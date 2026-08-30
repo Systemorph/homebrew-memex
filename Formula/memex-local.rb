@@ -17,6 +17,7 @@
 # upgrade). Install from there:
 #
 #   brew tap systemorph/memex
+#   brew trust systemorph/memex     # Homebrew refuses an untrusted third-party tap's formulae (measured 2026-08-30)
 #   brew install memex-local
 #   memex-local registry https://memex.meshweaver.cloud   # consume the cloud registry (free tier; --key mwr_… for a plan)
 #   memex-local up
@@ -29,8 +30,8 @@
 class MemexLocal < Formula
   desc "Local prod-like memex portal on Colima k3s (Helm + ingress + Ollama)"
   homepage "https://github.com/Systemorph/MeshWeaver/blob/main/src/MeshWeaver.Documentation/Data/Architecture/LocalColimaMac.md"
-  url "https://github.com/Systemorph/homebrew-memex/releases/download/v0.2.11427/memex-local-0.2.11427.tar.gz"
-  sha256 "962da6584c25ca8586f3cad377f706367cc6d9a95a6dbb06c8073ba16ebccc8a"
+  url "https://github.com/Systemorph/homebrew-memex/releases/download/v0.2.11464/memex-local-0.2.11464.tar.gz"
+  sha256 "b5a7b687256e4b2c70cb47c5c52b7f42ffbcf82f58b2d8d01500252a97ef57c3"
   license "Apache-2.0"
 
   # The published tap's render inserts `url`/`sha256` here; the template stays HEAD-capable so a
