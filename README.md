@@ -2,6 +2,7 @@
 
 ```bash
 brew tap systemorph/memex
+brew trust systemorph/memex       # Homebrew refuses to load a third-party tap's formulae until you trust the tap
 brew install memex-local          # the local prod-like memex stack on Colima k3s (Mac)
 ```
 
