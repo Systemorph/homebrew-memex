@@ -30,23 +30,26 @@
 class MemexLocal < Formula
   desc "Local prod-like memex portal on Colima k3s (Helm + ingress + Ollama)"
   homepage "https://github.com/Systemorph/MeshWeaver/blob/main/src/MeshWeaver.Documentation/Data/Architecture/LocalColimaMac.md"
-  url "https://github.com/Systemorph/homebrew-memex/releases/download/v0.2.18267/memex-local-0.2.18267.tar.gz"
-  sha256 "f78ce2de024523e8bf7a3d9bf6bfab045bbea8be1aedc1a4b64e4655ee1ac75c"
+  url "https://github.com/Systemorph/homebrew-memex/releases/download/v0.2.19105/memex-local-0.2.19105.tar.gz"
+  sha256 "7eb07fd424c2fb468331b18a19b4189cb18561da0bb0dd6be27e962dc96f2de0"
   license "Apache-2.0"
 
   # The published tap's render inserts `url`/`sha256` here; the template stays HEAD-capable so a
   # checkout can install the tip of main.
   head "https://github.com/Systemorph/MeshWeaver.git", branch: "main"
 
-  # Runtime toolchain — exactly the tools LocalColimaMac.md §1 installs, plus the Azure CLI the
-  # registry-mode image pull needs (`az acr login`; the CI-built image lives in a private ACR).
+  # Runtime toolchain — exactly the tools LocalColimaMac.md §1 installs.
+  # NOTE: the Azure CLI the registry-mode image pull needs (`az acr login`) is NOT a formula
+  # dependency either: Homebrew moved `azure-cli` from homebrew/core to a CASK, so
+  # `depends_on "azure-cli"` no longer resolves ("No available formula with the name
+  # azure-cli") and the whole install fails. A cask cannot be depended on (below), so, like
+  # the .NET SDK, it is named in `caveats` and enforced at runtime (`need az`).
   # NOTE: the .NET SDK is intentionally NOT a formula dependency. `depends_on cask:`
   # is rejected by current Homebrew ("Unsupported special dependency: :cask"), it's
   # needed only for the local-build image path (Option B, §3) — the ACR-pull path
   # (Option A, the registry-mode default) needs no SDK — and LocalColimaMac.md §1
   # treats the standalone .NET installer as equally valid. The requirement is
   # surfaced in `caveats` and enforced at runtime by `preflight()` / `doctor`.
-  depends_on "azure-cli"       # az acr login (registry mode pulls the CI-built image)
   depends_on "colima"          # k3s VM
   depends_on "helm"            # chart install/upgrade
   depends_on "kubernetes-cli"  # kubectl
@@ -80,8 +83,8 @@ class MemexLocal < Formula
         memex-local registry https://memex.meshweaver.cloud
         memex-local up
 
-      That pulls the CI-built multi-arch image from ACR (`az login` first — no .NET
-      SDK, no source checkout), registers this install at the registry on first
+      That pulls the CI-built multi-arch image from ACR (`brew install --cask azure-cli`
+      and `az login` first — no .NET SDK, no source checkout), registers this install at the registry on first
       boot, installs the packages it is granted and lands their compiled modules —
       the only way a local install gets Radzen/Analysis/EntityViews/GoogleMaps/Speech.
       A higher plan is a platform admin's edit of this instance's grant on the
