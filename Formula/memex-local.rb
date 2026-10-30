@@ -13,7 +13,7 @@
 # THIS FILE IS THE TEMPLATE. The published tap (Systemorph/homebrew-memex) carries the
 # same formula RENDERED by deploy/homebrew/scripts/render-formula.sh with a stable
 # `url`/`sha256` pointing at the tarball the platform's Homebrew workflow attaches to a
-# release of that tap (version 0.2.<main commit count>, so every merge to main is an
+# release of that tap (version 0.3.<main commit count>, so every merge to main is an
 # upgrade). Install from there:
 #
 #   brew tap systemorph/memex
@@ -30,8 +30,8 @@
 class MemexLocal < Formula
   desc "Local prod-like memex portal on Colima k3s (Helm + ingress + Ollama)"
   homepage "https://github.com/Systemorph/MeshWeaver/blob/main/src/MeshWeaver.Documentation/Data/Architecture/LocalColimaMac.md"
-  url "https://github.com/Systemorph/homebrew-memex/releases/download/v0.2.19155/memex-local-0.2.19155.tar.gz"
-  sha256 "a0cdb0b0dd22e8d0c25563dc67b19518e3d41b9b70395338a045357374c06e36"
+  url "https://github.com/Systemorph/homebrew-memex/releases/download/v0.3.163/memex-local-0.3.163.tar.gz"
+  sha256 "4f3f70090127e5ccec4668b7257e1c0e7f2eec7ff415bed7c6e143ac31d1de3d"
   license "Apache-2.0"
 
   # The published tap's render inserts `url`/`sha256` here; the template stays HEAD-capable so a
