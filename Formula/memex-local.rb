@@ -30,8 +30,8 @@
 class MemexLocal < Formula
   desc "Local prod-like memex portal on Colima k3s (Helm + ingress + Ollama)"
   homepage "https://github.com/Systemorph/MeshWeaver/blob/main/src/MeshWeaver.Documentation/Data/Architecture/LocalColimaMac.md"
-  url "https://github.com/Systemorph/homebrew-memex/releases/download/v0.3.280/memex-local-0.3.280.tar.gz"
-  sha256 "2386f9223233efca7efe8b0d891b912570f4e4dc28fe853d078bf34a4ec8801a"
+  url "https://github.com/Systemorph/homebrew-memex/releases/download/v0.3.286/memex-local-0.3.286.tar.gz"
+  sha256 "86148cf50cf035b0cb479ba41bf35ac047e9a8aca195f41adc6e207fc6605f56"
   license "Apache-2.0"
 
   # The published tap's render inserts `url`/`sha256` here; the template stays HEAD-capable so a
