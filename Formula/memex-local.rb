@@ -30,8 +30,8 @@
 class MemexLocal < Formula
   desc "Local prod-like memex portal on Colima k3s (Helm + ingress + Ollama)"
   homepage "https://github.com/Systemorph/MeshWeaver/blob/main/src/MeshWeaver.Documentation/Data/Architecture/LocalColimaMac.md"
-  url "https://github.com/Systemorph/homebrew-memex/releases/download/v0.3.481/memex-local-0.3.481.tar.gz"
-  sha256 "12b8482994e4c3b24cde19970cbd54109bf9ffdd16620155140902f13e4122f3"
+  url "https://github.com/Systemorph/homebrew-memex/releases/download/v0.3.490/memex-local-0.3.490.tar.gz"
+  sha256 "d756f7ae7b21975eaca3199d15af8593c4c5890ef28a96add2f37d5a25841b71"
   license "Apache-2.0"
 
   # The published tap's render inserts `url`/`sha256` here; the template stays HEAD-capable so a
@@ -66,6 +66,9 @@ class MemexLocal < Formula
     # Vendor a snapshot of the chart so a standalone install works offline.
     # A live MEMEX_REPO / MEMEX_CHART_DIR overrides this at runtime.
     (libexec/"share/helm").install Dir["deploy/helm/*"]
+    # The build-host first attach (deploy/backlease), which `fleet join` runs on a jobs opt-in with the values its
+    # enrolment code carried; beside share/helm, so its ../helm is the vendored chart.
+    (libexec/"share/backlease").install Dir["deploy/backlease/*"]
 
     # Wrapper on PATH that points the CLI at the vendored assets + chart.
     (bin/"memex-local").write_env_script libexec/"memex-local",
